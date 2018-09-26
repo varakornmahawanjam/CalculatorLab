@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public new string calculate(string str)
         {
             if (str == null)
             {
@@ -31,12 +31,16 @@ namespace CPE200Lab1
                 else if (isOperator(token))
                 {
                     //FIXME, what if there is only one left in stack?
-                    if (rpnStack.Count() <= 1)
+                    
+                    try
+                    {
+                        secondOperand = rpnStack.Pop();
+                        firstOperand = rpnStack.Pop();
+                    }
+                    catch(InvalidOperationException e)
                     {
                         return "E";
                     }
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
                     result = calculate(token, firstOperand, secondOperand, 8);
                     if (result is "E")
                     {
