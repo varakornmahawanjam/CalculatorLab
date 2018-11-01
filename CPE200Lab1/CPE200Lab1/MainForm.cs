@@ -254,7 +254,7 @@ namespace CPE200Lab1
             memory -= Convert.ToDouble(lblDisplay.Text);
             isAfterOperater = true;
         }
-
+        
         private void btnMR_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "error")
