@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : SimpleCalculator
     {
-        public new string calculate(string str)
+        public string calculate(string str)
         {
-            if (str == null)
+            if (str == null || str == "")
             {
                 return "E";
             }
@@ -18,7 +18,7 @@ namespace CPE200Lab1
             List<string> parts = str.Split(' ').ToList<string>();
             string result;
             string firstOperand, secondOperand;
-            if (parts.Count() <= 2 && str != "0")
+            if (str[0] == '+')
             {
                 return "E";
             }
@@ -31,36 +31,52 @@ namespace CPE200Lab1
                 else if (isOperator(token))
                 {
                     //FIXME, what if there is only one left in stack?
-                    
+                    if (rpnStack.Count == 1)
+                    {
+                        return "E";
+                    }
                     try
                     {
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
+                        result = calculate(token, firstOperand, secondOperand);
                     }
-                    catch(InvalidOperationException e)
+                    catch
                     {
                         return "E";
                     }
-                    result = calculate(token, firstOperand, secondOperand, 8);
+
                     if (result is "E")
                     {
                         return result;
                     }
                     rpnStack.Push(result);
                 }
-                else if (!isOperator(token) && token != "")
+                else if (token == "")
+                {
+                    continue;
+                }
+                else
                 {
                     return "E";
                 }
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
-            if (rpnStack.Count() != 1)
+            if (rpnStack.Count > 1)
+            {
+                return "E";
+            }
+            try
+            {
+                result = rpnStack.Pop();
+            }
+            catch
             {
                 return "E";
             }
 
-            result = rpnStack.Pop();
-            return Convert.ToDecimal(result).ToString("0.####");
+            return Convert.ToDouble(result).ToString("0.####");
         }
+
     }
 }
