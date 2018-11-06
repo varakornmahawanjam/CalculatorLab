@@ -39,7 +39,7 @@ namespace CPE200Lab1
             memory = 0;
             engine = new CalculatorEngine();
             model = new CalculatorModel();
-            controller = new CalculatorController();
+            controller = new CalController();
             controller.AddModel(model);
             resetAll();
         }
@@ -254,7 +254,7 @@ namespace CPE200Lab1
             memory -= Convert.ToDouble(lblDisplay.Text);
             isAfterOperater = true;
         }
-        
+
         private void btnMR_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "error")
@@ -262,11 +262,6 @@ namespace CPE200Lab1
                 return;
             }
             lblDisplay.Text = memory.ToString();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            resetAll();
         }
     }
 }

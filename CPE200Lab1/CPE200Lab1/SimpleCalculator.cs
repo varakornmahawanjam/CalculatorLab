@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace CPE200Lab1
 {
     public class SimpleCalculator
@@ -12,6 +13,7 @@ namespace CPE200Lab1
             double retNum;
             return Double.TryParse(str, out retNum);
         }
+
         public bool isOperator(string ch)
         {
             switch (ch)
@@ -24,6 +26,7 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -33,6 +36,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
+
                         result = Math.Sqrt(Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -52,6 +56,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
+
                         result = (1.0 / Convert.ToDouble(operand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -69,6 +74,7 @@ namespace CPE200Lab1
             }
             return "E";
         }
+
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -86,6 +92,7 @@ namespace CPE200Lab1
                         double result;
                         string[] parts;
                         int remainLength;
+
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');

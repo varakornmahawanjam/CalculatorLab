@@ -24,7 +24,7 @@ namespace CPE200Lab1
             InitializeComponent();
             engine = new RPNCalculatorEngine();
             model = new CalculatorModel();
-            controller = new CalculatorController();
+            controller = new CalController();
             model.AttachObserver(this);
             controller.AddModel(model);
         }

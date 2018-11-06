@@ -48,6 +48,7 @@
     <Compile Include="CalculatorController.cs" />
     <Compile Include="CalculatorEngine.cs" />
     <Compile Include="CalculatorModel.cs" />
+    <Compile Include="CalModel.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="ExtendForm.cs">
       <SubType>Form</SubType>
